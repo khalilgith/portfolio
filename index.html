@@ -3,12 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <title>Khalil Yahyaoui | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0C0A08;
+      color: #F0EBE3;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: rgba(212, 165, 116, 0.25); color: #F0EBE3; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 80px 0; }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 12px;
+    }
+    h2 span { color: #D4A574; }
+    p { color: rgba(240, 235, 227, 0.5); font-weight: 300; }
+    a { color: #D4A574; text-decoration: none; transition: opacity 0.3s; }
+    a:hover { opacity: 0.7; }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(12, 10, 8, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 165, 116, 0.06);
+      height: 64px;
+      display: flex; align-items: center;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+    }
+    nav .logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.25rem;
+      color: #F0EBE3;
+      letter-spacing: 0.05em;
+    }
+    nav ul { display: flex; gap: 32px; list-style: none; }
+    nav ul a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 227, 0.4);
+      transition: color 0.3s;
+    }
+    nav ul a:hover { color: #D4A574; opacity: 1; }
+
+    /* Hero */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 64px;
+    }
+    #home .hero-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(212, 165, 116, 0.6);
+      margin-bottom: 20px;
+    }
+    #home h1 {
+      max-width: 700px;
+    }
+    #home h1 span { color: #D4A574; }
+    #home p {
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-top: 20px;
+    }
+    #home .hero-cta {
+      display: flex; gap: 16px; margin-top: 36px;
+      flex-wrap: wrap;
+    }
+    #home .hero-cta a {
+      padding: 12px 32px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.4s;
+    }
+    #home .hero-cta .btn-primary {
+      background: #D4A574;
+      color: #0C0A08;
+    }
+    #home .hero-cta .btn-primary:hover {
+      background: #E8CCA8;
+      opacity: 1;
+    }
+    #home .hero-cta .btn-outline {
+      border: 1px solid rgba(240, 235, 227, 0.15);
+      color: rgba(240, 235, 227, 0.6);
+    }
+    #home .hero-cta .btn-outline:hover {
+      border-color: rgba(240, 235, 227, 0.3);
+      opacity: 1;
+    }
+
+    .divider {
+      width: 40px; height: 1px;
+      background: rgba(212, 165, 116, 0.3);
+      margin: 24px 0;
+    }
+
+    /* About */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 32px;
+    }
+    #about .about-grid ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    #about .about-grid ul li {
+      padding-left: 20px;
+      position: relative;
+      color: rgba(240, 235, 227, 0.5);
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+    #about .about-grid ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 10px;
+      width: 6px; height: 1px;
+      background: #D4A574;
+    }
+
+    /* Work */
+    #work .work-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(240, 235, 227, 0.04);
+      transition: opacity 0.3s;
+    }
+    .project-card:hover { opacity: 0.8; }
+    .project-card:last-child { border-bottom: none; }
+    .project-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #F0EBE3;
+      letter-spacing: 0;
+    }
+    .project-card p {
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+    .project-card .project-link {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 165, 116, 0.2);
+      padding: 8px 20px;
+      color: rgba(212, 165, 116, 0.7);
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    .project-card .project-link:hover {
+      background: rgba(212, 165, 116, 0.1);
+      opacity: 1;
+    }
+
+    /* Resume */
+    #resume .resume-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 12px 28px;
+      border: 1px solid rgba(212, 165, 116, 0.2);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(212, 165, 116, 0.7);
+      transition: all 0.3s;
+    }
+    #resume .resume-link:hover {
+      background: rgba(212, 165, 116, 0.1);
+      opacity: 1;
+    }
+
+    /* Contact */
+    #contact form {
+      display: flex; flex-direction: column; gap: 16px;
+      max-width: 480px;
+      margin-top: 24px;
+    }
+    #contact label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 227, 0.3);
+      margin-bottom: 4px;
+      display: block;
+    }
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      background: rgba(240, 235, 227, 0.03);
+      border: 1px solid rgba(240, 235, 227, 0.08);
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #F0EBE3;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      border-color: rgba(212, 165, 116, 0.3);
+    }
+    #contact textarea { min-height: 120px; resize: vertical; }
+    #contact button {
+      align-self: flex-start;
+      padding: 12px 32px;
+      background: #D4A574;
+      color: #0C0A08;
+      border: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #contact button:hover { background: #E8CCA8; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(240, 235, 227, 0.04);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p { font-size: 0.75rem; color: rgba(240, 235, 227, 0.2); }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      nav ul { gap: 16px; }
+      nav ul a { font-size: 0.65rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-card .project-link { align-self: flex-start; }
+      section { padding: 60px 0; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>My Portfolio</h1>
-    <nav>
+  <nav>
+    <div class="container">
+      <span class="logo">KY</span>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -16,68 +289,107 @@
         <li><a href="#resume">Resume</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <section id="home">
-    <h2>Welcome</h2>
-    <p>Hello! I'm building my portfolio page using HTML. Scroll down to learn more about me.</p>
+    <div class="container">
+      <p class="hero-sub">Full-Stack Developer</p>
+      <h1>Crafting digital experiences<br>with <span>precision</span> & <span>purpose</span>.</h1>
+      <p>I build modern, performant web applications — from luxury brand experiences to data-driven dashboards.</p>
+      <div class="divider"></div>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
   </section>
+
   <section id="about">
-    <h2>About Me</h2>
-    <p>I am passionate about web development and creating meaningful projects. This portfolio highlights my journey.</p>
-    <ul>
-      <li>Web Development Enthusiast</li>
-      <li>HTML, CSS, JavaScript Learner</li>
-      <li>Problem Solver</li>
-    </ul>
+    <div class="container">
+      <h2>About <span>Me</span></h2>
+      <p>I'm a web developer passionate about building meaningful, high-quality digital products.</p>
+      <div class="about-grid">
+        <div>
+          <p style="margin-top: 0; font-size: 0.9rem;">I specialize in building full-stack applications with React, Next.js, TypeScript, and Node.js. I care deeply about clean code, thoughtful UX, and performant architecture.</p>
+        </div>
+        <div>
+          <ul>
+            <li>React & Next.js</li>
+            <li>TypeScript & JavaScript</li>
+            <li>Tailwind CSS & Framer Motion</li>
+            <li>Node.js & Supabase</li>
+            <li>UI/UX Design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
+
   <section id="work">
-    <h2>My Work</h2>
-    <p>Here are some projects I've worked on:</p>
-      <table>
-        <tr>
-          <th>Project</th>
-          <th>Description</th>
-          <th>Link</th>
-        </tr>
-        <tr>
-          <td>LifeStats</td>
-          <td>Personal health & wellness dashboard — Next.js, TypeScript, Tailwind, Framer Motion, Recharts</td>
-          <td><a href="https://lifestats-alpha.vercel.app" target="_blank">Live</a></td>
-        </tr>
-        <tr>
-          <td>DRIP Marketplace</td>
-          <td>Luxury clothing marketplace — Next.js 14, Supabase, Tailwind, Stripe, glass-morphism editorial design</td>
-          <td><a href="https://drip-virid.vercel.app" target="_blank">Live</a></td>
-        </tr>
-        <tr>
-          <td>NOIR Restaurant</td>
-          <td>Premium Michelin-star fine dining website — Next.js 16, TypeScript, Tailwind, Framer Motion, cinematic luxury UI/UX</td>
-          <td><a href="https://noir-restaurant-sepia.vercel.app" target="_blank">Live</a></td>
-        </tr>
-      </table>
+    <div class="container">
+      <h2>My <span>Work</span></h2>
+      <p>A selection of projects I've built.</p>
+      <div class="work-grid">
+        <div class="project-card">
+          <div>
+            <h3>NOIR Restaurant</h3>
+            <p>Premium Michelin-star fine dining website — Next.js 16, TypeScript, Tailwind, Framer Motion, cinematic luxury UI/UX</p>
+          </div>
+          <a href="https://noir-restaurant-sepia.vercel.app" target="_blank" class="project-link">Live →</a>
+        </div>
+        <div class="project-card">
+          <div>
+            <h3>DRIP Marketplace</h3>
+            <p>Luxury clothing marketplace — Next.js 14, Supabase, Tailwind, Stripe, editorial design</p>
+          </div>
+          <a href="https://drip-virid.vercel.app" target="_blank" class="project-link">Live →</a>
+        </div>
+        <div class="project-card">
+          <div>
+            <h3>LifeStats Dashboard</h3>
+            <p>Health & wellness dashboard — Next.js, TypeScript, Tailwind, Framer Motion, Recharts</p>
+          </div>
+          <a href="https://lifestats-alpha.vercel.app" target="_blank" class="project-link">Live →</a>
+        </div>
+      </div>
+    </div>
   </section>
+
   <section id="resume">
-    <h2>Resume</h2>
-    <p>Download my resume below:</p>
+    <div class="container">
+      <h2><span>Resume</span></h2>
+      <p>Download my resume to learn more about my experience and background.</p>
+      <a href="#" class="resume-link">Download PDF ↓</a>
+    </div>
   </section>
+
   <section id="contact">
-    <h2>Contact Me</h2>
-    <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" >
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" >
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" ></textarea>
-    </form>
+    <div class="container">
+      <h2>Get in <span>Touch</span></h2>
+      <p>Have a project in mind? Let's build something great together.</p>
+      <form>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com">
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
-  <footer>
-    <p> 2025 My Portfolio | Built with  using HTML</p>
-  </footer>
 
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Khalil Yahyaoui. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
